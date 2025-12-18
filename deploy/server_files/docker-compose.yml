@@ -1,0 +1,22 @@
+services:
+  murky_api:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./deployments/current:/app
+      - ./database_backups:/db_backups
+      - ./secrets:/secrets
+    env_file:
+      - .env
+    depends_on:
+      - murky_api_redis
+    networks:
+      - shared-network
+  murky_api_redis:
+    image: redis:latest
+    restart: unless-stopped
+    networks:
+      - shared-network
+networks:
+  shared-network:
+    external: true

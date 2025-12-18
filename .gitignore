@@ -1,0 +1,5 @@
+tmp
+build
+secrets
+.env
+db/*.sqlite3*

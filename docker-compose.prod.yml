@@ -1,0 +1,8 @@
+services:
+  api:
+    image: murky-api:latest
+    build:
+      context: .
+      target: prod_builder
+    volumes:
+      - ./build:/app/build

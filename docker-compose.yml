@@ -1,0 +1,16 @@
+services:
+  murky_api:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    volumes:
+      - .:/app
+      - ./tmp/db_backups:/db_backups
+    env_file:
+      - .env
+    depends_on:
+      - murky_api_redis
+  murky_api_redis:
+    image: redis:latest
