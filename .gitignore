@@ -1,5 +1,6 @@
 tmp
 build
 secrets
-.env
+.env*
+!.env.example
 db/*.sqlite3*
