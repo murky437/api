@@ -28,7 +28,7 @@ func Create() http.HandlerFunc {
 			return
 		}
 
-		validationResult := req.Validate(db)
+		validationResult := req.Validate()
 		if validationResult != nil {
 			routing.WriteValidationErrorResponse(w, *validationResult)
 			return
@@ -146,7 +146,7 @@ func Update() http.HandlerFunc {
 			return
 		}
 
-		validationResult := req.Validate(db)
+		validationResult := req.Validate()
 		if validationResult != nil {
 			routing.WriteValidationErrorResponse(w, *validationResult)
 			return

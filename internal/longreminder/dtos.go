@@ -1,7 +1,6 @@
 package longreminder
 
 import (
-	"database/sql"
 	"fmt"
 	"murky_api/internal/constants"
 	"murky_api/internal/validation"
@@ -18,7 +17,7 @@ type CreateRequest struct {
 	IntervalDays int    `json:"intervalDays"`
 }
 
-func (request *CreateRequest) Validate(db *sql.DB) *validation.Result {
+func (request *CreateRequest) Validate() *validation.Result {
 	result := &validation.Result{
 		GeneralErrors: []string{},
 		FieldErrors:   make(map[string][]string),
@@ -77,7 +76,7 @@ type UpdateRequest struct {
 	IsEnabled    *bool   `json:"isEnabled"`
 }
 
-func (request *UpdateRequest) Validate(db *sql.DB) *validation.Result {
+func (request *UpdateRequest) Validate() *validation.Result {
 	result := &validation.Result{
 		GeneralErrors: []string{},
 		FieldErrors:   make(map[string][]string),
