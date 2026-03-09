@@ -12,8 +12,8 @@ deploy:
   before_script:
     - apk add --no-cache bash rsync openssh-client jq
     - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_murky
-    - chmod 600 ~/.ssh/id_murky
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
     - echo "$SSH_CONFIG" > ~/.ssh/config
     - chmod 600 ~/.ssh/config
   script:
