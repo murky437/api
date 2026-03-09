@@ -206,7 +206,7 @@ func SendGuestLoginLink(mainDb *sql.DB, guestDb *sql.DB, conf *config.Config, em
 		err = emailClient.SendWithTemplate(
 			guestLoginToken.Email,
 			fmt.Sprintf("Guest login link to %s", req.Url),
-			1,
+			email.TemplateIdGuestLoginLink,
 			map[string]any{
 				"link": fmt.Sprintf("%s/token-login/%s", req.Url, guestLoginToken.Token),
 			},
