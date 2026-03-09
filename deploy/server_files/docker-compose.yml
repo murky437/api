@@ -8,15 +8,10 @@ services:
       - ./secrets:/secrets
     env_file:
       - .env
+    ports:
+      - "8701:8080"
     depends_on:
       - murky_api_redis
-    networks:
-      - shared-network
   murky_api_redis:
     image: redis:latest
     restart: unless-stopped
-    networks:
-      - shared-network
-networks:
-  shared-network:
-    external: true

@@ -1,17 +1,16 @@
 package app
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
 
 func StartApiServer(c *Container) {
-	log.Printf("Starting API server at port %s...", c.Config.ApiPort)
+	log.Printf("Starting API server at port 8080...")
 
 	mux := NewMux(c)
 
-	err := http.ListenAndServe(fmt.Sprintf(":%s", c.Config.ApiPort), mux)
+	err := http.ListenAndServe(":8080", mux)
 	if err != nil {
 		log.Println("Error starting API server:", err)
 	}

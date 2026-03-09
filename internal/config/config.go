@@ -22,7 +22,6 @@ type Config struct {
 	S3DbBackupPath                  string
 	GoogleServiceAccountKeyFilePath string
 	BrevoApiKey                     string
-	ApiPort                         string
 }
 
 func NewConfig() *Config {
@@ -45,6 +44,5 @@ func NewConfig() *Config {
 		S3DbBackupPath:                  os.Getenv("S3_DB_BACKUP_PATH"),
 		GoogleServiceAccountKeyFilePath: os.Getenv("GOOGLE_SERVICE_ACCOUNT_KEY_FILE_PATH"),
 		BrevoApiKey:                     os.Getenv("BREVO_API_KEY"),
-		ApiPort:                         os.Getenv("API_PORT"),
 	}
 }
