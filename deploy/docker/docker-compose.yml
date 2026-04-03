@@ -1,0 +1,35 @@
+services:
+  api:
+    image: ${CI_REGISTRY_IMAGE}/api:latest
+    restart: unless-stopped
+    volumes:
+      - db:${DB_DIR}
+      - db_backups:${DB_BACKUP_DIR}
+    environment:
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+      - DB_FILE_PATH=${DB_FILE_PATH}
+      - GUEST_DB_FILE_PATH=${GUEST_DB_FILE_PATH}
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
+      - DB_BACKUP_DIR=${DB_BACKUP_DIR}
+      - REDIS_ADDRESS=${REDIS_ADDRESS}
+      - TIMEZONE=${TIMEZONE}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ENDPOINT_URL=${AWS_ENDPOINT_URL}
+      - S3_BUCKET=${S3_BUCKET}
+      - S3_DB_BACKUP_PATH=${S3_DB_BACKUP_PATH}
+      - GOOGLE_SERVICE_ACCOUNT_KEY_FILE_CONTENT=${GOOGLE_SERVICE_ACCOUNT_KEY_FILE_CONTENT}
+      - GOOGLE_SERVICE_ACCOUNT_KEY_FILE_PATH=${GOOGLE_SERVICE_ACCOUNT_KEY_FILE_PATH}
+      - BREVO_API_KEY=${BREVO_API_KEY}
+    ports:
+      - "8704:8080"
+    depends_on:
+      - redis
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+volumes:
+  db:
+  db_backups:
