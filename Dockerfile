@@ -16,10 +16,3 @@ RUN go install github.com/hibiken/asynq/tools/asynq@latest
 RUN go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
 
 CMD ["air"]
-
-
-FROM base AS prod_builder
-
-COPY . .
-
-CMD ["sh", "-c", "go build -o ./build/api ./cmd/api"]
