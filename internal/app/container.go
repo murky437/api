@@ -9,6 +9,7 @@ import (
 	"murky_api/internal/firebase"
 	"murky_api/internal/jwt"
 	"murky_api/internal/migrations"
+	"murky_api/internal/music/hifiapi"
 	"murky_api/internal/s3"
 	"os"
 	"path/filepath"
@@ -24,6 +25,7 @@ type Container struct {
 	S3Client               s3.Client
 	FirebaseMessageService firebase.MessageService
 	EmailClient            email.Client
+	HifiClient             hifiapi.HifiClient
 }
 
 func NewContainer() *Container {
@@ -37,6 +39,7 @@ func NewContainer() *Container {
 	}
 	firebaseMessageService := firebase.NewMessageService(conf)
 	emailClient := email.NewBrevoClient(conf)
+	hifiClient := hifiapi.NewClient(conf.HifiApiUrl)
 
 	return &Container{
 		Config:                 conf,
@@ -46,6 +49,7 @@ func NewContainer() *Container {
 		S3Client:               s3Client,
 		FirebaseMessageService: firebaseMessageService,
 		EmailClient:            emailClient,
+		HifiClient:             hifiClient,
 	}
 }
 

@@ -3,6 +3,7 @@ package app
 import (
 	"murky_api/internal/auth"
 	"murky_api/internal/longreminder"
+	"murky_api/internal/music"
 	"murky_api/internal/project"
 	"murky_api/internal/routing"
 	"murky_api/internal/status"
@@ -53,6 +54,8 @@ func NewMux(c *Container) *http.ServeMux {
 	protectedMux.HandleFunc("GET /long-reminders", longreminder.GetList())
 	protectedMux.HandleFunc("DELETE /long-reminders/{id}", longreminder.Delete())
 	protectedMux.HandleFunc("PUT /long-reminders/{id}", routing.Chain(longreminder.Update(), routing.RequireJSON))
+
+	protectedMux.HandleFunc("GET /music/search", music.GetSearch(c.HifiClient))
 
 	mux.HandleFunc("/", routing.Chain(
 		protectedMux.ServeHTTP,
