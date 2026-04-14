@@ -19,5 +19,7 @@ Deployment is done with GitLab ci. It runs the deployment script on main branch 
 
 ### TODO
 
-- make deployment build a registry image instead of a local image on server
-- rework the db backup system to function with that
+- add music endpoints
+  - ripping
+  - listing
+  - streaming
