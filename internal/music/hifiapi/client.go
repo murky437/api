@@ -6,7 +6,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strconv"
 )
 
 type HifiClient interface {
@@ -30,28 +29,6 @@ func (c *defaultHifiClient) Search(params SearchParams) (*SearchResponse, error)
 
 	if params.Track != "" {
 		query.Set("s", params.Track)
-	}
-	if params.Artist != "" {
-		query.Set("a", params.Artist)
-	}
-	if params.Album != "" {
-		query.Set("al", params.Album)
-	}
-	if params.Video != "" {
-		query.Set("v", params.Video)
-	}
-	if params.Playlist != "" {
-		query.Set("p", params.Playlist)
-	}
-	if params.ISRC != "" {
-		query.Set("i", params.ISRC)
-	}
-
-	if params.Offset > 0 {
-		query.Set("offset", strconv.Itoa(params.Offset))
-	}
-	if params.Limit > 0 {
-		query.Set("limit", strconv.Itoa(params.Limit))
 	}
 
 	requestURL := fmt.Sprintf("%s/search?%s", c.BaseURL, query.Encode())

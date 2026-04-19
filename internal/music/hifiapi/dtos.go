@@ -1,14 +1,7 @@
 package hifiapi
 
 type SearchParams struct {
-	Track    string `json:"s,omitempty"`
-	Artist   string `json:"a,omitempty"`
-	Album    string `json:"al,omitempty"`
-	Video    string `json:"v,omitempty"`
-	Playlist string `json:"p,omitempty"`
-	ISRC     string `json:"i,omitempty"`
-	Offset   int    `json:"offset,omitempty"`
-	Limit    int    `json:"limit,omitempty"`
+	Track string `json:"s,omitempty"`
 }
 
 type SearchResponseData struct {

@@ -12,19 +12,17 @@ func GetSearch(hifiClient hifiapi.HifiClient) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query()
 		track := query.Get("track")
-		artist := query.Get("artist")
 
-		if track == "" && artist == "" {
+		if track == "" {
 			validationResult := validation.Result{
-				GeneralErrors: []string{"At least one of 'track' or 'artist' query parameters must be provided"},
+				GeneralErrors: []string{"'track' query parameter is required"},
 			}
 			routing.WriteValidationErrorResponse(w, validationResult)
 			return
 		}
 
 		params := hifiapi.SearchParams{
-			Track:  track,
-			Artist: artist,
+			Track: track,
 		}
 
 		searchResp, err := hifiClient.Search(params)
